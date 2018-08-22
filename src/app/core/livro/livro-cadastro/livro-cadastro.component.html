@@ -1,0 +1,84 @@
+<mz-card 
+[class]="'white darken-1 grey-text text-darken-4'" 
+[hoverable]="false">
+<mz-card-title>
+  <div class="row">
+    <div class="col s6">
+      <h5>Cadastro de Livro</h5>
+    </div>
+  </div>
+</mz-card-title>
+<mz-card-content *ngIf="isLoading">
+  <div class="center">
+  </div>
+</mz-card-content>
+<mz-card-content *ngIf="!isLoading">
+  <div class="row">
+    <div class="col s6">
+      <mz-input-container>
+        <input mz-input 
+          [label]="'Nome'" 
+          [validate]="false" 
+          id="nome-input"
+          [(ngModel)]="livro.nome" 
+          placeholder="Insira o nome" 
+          type="text">
+
+      </mz-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <mz-input-container>
+        <input mz-input 
+          [label]="'Resumo'" 
+          [validate]="false" 
+          id="nome-input"
+          [(ngModel)]="livro.resumo" 
+          placeholder="Insira o resumo" 
+          type="text">
+
+      </mz-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <mz-input-container>
+        <input mz-input 
+          [label]="'Autor'" 
+          [validate]="false" 
+          id="nome-input"
+          [(ngModel)]="livro.autor" 
+          placeholder="Insira o autor" 
+          type="text">
+
+      </mz-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s6">
+      <mz-input-container>
+        <input mz-input 
+          [label]="'Ano'" 
+          id="nome-input"
+          [(ngModel)]="livro.ano" 
+          placeholder="Insira o ano" 
+          type="text">
+
+      </mz-input-container>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col s12">
+      <button mat-button class="blue darken-2 white-text" (click)="save(this)">
+        Salvar
+      </button>
+      <app-excluir rotaRetorno="livros" urlApi="livro" idRegistro="{{livro.id}}"></app-excluir>
+      <button mat-button class="grey light medium white-text" [routerLink]="['/livros']">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</mz-card-content>
+</mz-card>

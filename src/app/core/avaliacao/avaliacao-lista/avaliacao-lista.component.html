@@ -1,0 +1,18 @@
+<br>
+<br>
+<div *ngIf="!avaliacoes">
+  <br>
+  <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'blue'"></mz-progress>
+</div>
+<mat-card>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+  <mat-table #table [dataSource]="avaliacoes">
+    <ng-container matColumnDef="nota">
+      <mat-header-cell *matHeaderCellDef> Nota </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element?.nota}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>

@@ -1,0 +1,58 @@
+<div class="center div-text">
+  <label class="text-titulo">Terminou de ler seu Livro? </label>
+</div>
+<div class="center">
+  <label class="text-sub-titulo">Registre sua opinião!</label>
+</div>
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Informe seu usuário</ng-template>
+      <mat-form-field>
+      <input matInput placeholder="Usuário" [(ngModel)]="usuario.nome" (keydown)="limpaUsuario()" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="pesquisaUsuario()" >Validar usuário</button>
+        <button mat-button *ngIf="validaUsuario()" (click)="stepper.next();" >Próximo</button>
+        <!-- matStepperNext -->
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template *ngIf="!validaUsuario()" matStepLabel>Livro</ng-template>
+    <label *ngIf="!validaUsuario()">Deve ser validado o usuário</label>
+    <form [formGroup]="secondFormGroup" *ngIf="validaUsuario()">
+      <ng-template  matStepLabel>Livro</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Livro" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <ng-template matStepLabel>Estado de conversação</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Ótimo" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <ng-template  matStepLabel>Nota</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Nota" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <ng-template matStepLabel>Observação</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Observação" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <br>
+        <br>
+        <button mat-button matStepperPrevious>Voltar</button>
+        <button mat-button matStepperNext>Enviar avaliação</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Concluído</ng-template>
+    Avaliação concluída. 
+
+    Deseja efetuar uma nova avaliação?
+    <div>
+      <button mat-button (click)="stepper.reset()">Sim</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

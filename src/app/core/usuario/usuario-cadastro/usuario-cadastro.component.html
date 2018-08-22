@@ -1,0 +1,43 @@
+<mz-card 
+[class]="'white darken-1 grey-text text-darken-4'" 
+[hoverable]="false">
+<mz-card-title>
+  <div class="row">
+    <div class="col s6">
+      <h5>Cadastro de usuário</h5>
+    </div>
+  </div>
+</mz-card-title>
+<mz-card-content *ngIf="isLoading">
+  <div class="center">
+  </div>
+</mz-card-content>
+<mz-card-content *ngIf="!isLoading">
+  <div class="row">
+    <div class="col s6">
+      <mz-input-container>
+        <input mz-input 
+          [label]="'Usuário'" 
+          [validate]="false" 
+          [dataError]="'Usuário é inválido'" 
+          [dataSuccess]="'Usuário é válido'" 
+          id="nome-input"
+          [(ngModel)]="usuario.usuario" 
+          placeholder="Insira o usuario" 
+          type="text">
+
+      </mz-input-container>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <button mat-button class="blue darken-2 white-text" (click)="save(this)">
+        Salvar
+      </button>
+      <button mat-button class="grey light medium white-text" [routerLink]="['/usuarios']">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</mz-card-content>
+</mz-card>

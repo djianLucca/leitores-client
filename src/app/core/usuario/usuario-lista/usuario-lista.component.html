@@ -1,0 +1,30 @@
+<br>
+<button mat-button routerLink="cadastro" class="green white-text">+ usuário</button>
+<br>
+<br>
+<div *ngIf="!usuarios">
+  <br>
+  <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'blue'"></mz-progress>
+</div>
+<mat-card>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+  <mat-table #table [dataSource]="usuarios">
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuário </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element?.usuario}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <i class="material-icons" (click)="editar(element.id)">
+          editar
+        </i>
+        <app-excluir-link (eventoRetorno)="getUsuarios()" urlApi="usuario" idRegistro="{{element.id}}"></app-excluir-link>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>

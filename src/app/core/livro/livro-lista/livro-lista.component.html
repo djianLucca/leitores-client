@@ -1,0 +1,29 @@
+<br>
+<button mat-button routerLink="cadastro" class="green white-text">+ livro</button>
+<br>
+<br>
+<div *ngIf="!livros">
+  <br>
+  <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'blue'"></mz-progress>
+</div>
+<mat-card>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+  <mat-table #table [dataSource]="livros">
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element?.nome}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <i class="material-icons" (click)="editar(element.id)">
+          editar
+        </i>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>

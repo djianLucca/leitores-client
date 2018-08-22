@@ -1,0 +1,11 @@
+<form class="form marg-autocomplete">
+  <mat-form-field class="full-height">
+    <input  matInput class="input-autocomplete" type="text" [placeholder]="placeholder" [matAutocomplete]="auto" (keyup)="buscar($event.target.value)" [value]="selecionado.pessoa.nome">
+    <i class="material-icons grey-text lighten-2 no-select">search</i>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="display()">
+      <mat-option *ngFor="let registro of registros" [value]="registro.pessoa.nome" (click)="item(registro)">
+        {{ registro.pessoa.nome }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
