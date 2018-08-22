@@ -46,7 +46,7 @@ import { AvaliacaoModule } from './core/avaliacao/avaliacao.module';
     DashboardModule,
     HttpModule,
     DadosPessoaisModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   providers: [
     BaseService,

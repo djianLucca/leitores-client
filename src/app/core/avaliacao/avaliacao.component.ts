@@ -25,6 +25,7 @@ export class AvaliacaoComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   livros = [];
+  estados = ['Ruim', 'Bom', 'Ótimo'];
 
   constructor(
     private _router: Router,
@@ -42,7 +43,10 @@ export class AvaliacaoComponent implements OnInit {
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      livro: [],
+      estado: [],
+      nota: [],
+      obs: [],
     });
     this.livros.push({id: 4, nome: 'teste'}); 
   }

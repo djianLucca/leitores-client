@@ -3,13 +3,21 @@ import { NgModel, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AvaliacaoComponent } from './avaliacao.component';
 import { AvaliacaoService } from './avaliacao.service';
-import { MatStepperModule, MatButtonModule, MatInputModule, MatSelectModule, MatOptionModule } from '@angular/material';
 import { AvaliacaoListaComponent } from './avaliacao-lista/avaliacao-lista.component';
-
-
-import { MatCardModule, MatDialogModule, MatTableModule, MatAutocompleteModule } from '@angular/material';
+import {
+  MatStepperModule,
+  MatButtonModule,
+  MatInputModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatCardModule,
+  MatDialogModule,
+  MatTableModule,
+  MatAutocompleteModule
+} from '@angular/material';
 import { BreadcrumbsModule } from '../../shared/components/breadcrumbs/breadcrumbs.module';
 import { RouterModule } from '@angular/router';
+import { MzSelectModule } from 'ng2-materialize';
 
 
 @NgModule({
@@ -28,6 +36,7 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     MatAutocompleteModule,
     BreadcrumbsModule,
+    MzSelectModule
   ],
   declarations: [AvaliacaoComponent, AvaliacaoListaComponent],
   providers: [

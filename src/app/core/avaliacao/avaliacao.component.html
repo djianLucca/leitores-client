@@ -5,7 +5,7 @@
   <label class="text-sub-titulo">Registre sua opinião!</label>
 </div>
 <mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
+  <mat-step [editable]="false" [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Informe seu usuário</ng-template>
       <mat-form-field>
@@ -18,26 +18,42 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step [editable]="false" [stepControl]="secondFormGroup">
     <ng-template *ngIf="!validaUsuario()" matStepLabel>Livro</ng-template>
     <label *ngIf="!validaUsuario()">Deve ser validado o usuário</label>
     <form [formGroup]="secondFormGroup" *ngIf="validaUsuario()">
       <ng-template  matStepLabel>Livro</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Livro" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <ng-template matStepLabel>Estado de conversação</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Ótimo" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <ng-template  matStepLabel>Nota</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Nota" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <ng-template matStepLabel>Observação</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Observação" formControlName="secondCtrl" required>
-      </mat-form-field>
+      <div class="row">
+        <div class="col s3">
+            <mz-select-container>
+              <select mz-select id="options-select" [label]="'Livro'" [placeholder]="'Selecione um Livro'">
+                  <option *ngFor="let livro of livros" [value]="livro.id">{{livro.nome}}</option>
+              </select>
+            </mz-select-container>
+        </div>
+        <div class="col s3">
+            <mz-select-container>
+              <select mz-select id="options-select" [label]="'Estado de Conservação'" [placeholder]="'Selecione o Estado'">
+                  <option *ngFor="let estado of estados" [value]="estado">{{estado}}</option>
+              </select>
+            </mz-select-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3">
+            <ng-template  matStepLabel>Nota</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Nota" formControlName="nota" required>
+            </mat-form-field>
+        </div>
+        <div class="col s3">
+            <ng-template matStepLabel>Observação</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Observação" formControlName="obs" required>
+            </mat-form-field>
+        </div>
+      </div>
+
       <div>
         <br>
         <br>
@@ -46,7 +62,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
+  <mat-step [editable]="false">
     <ng-template matStepLabel>Concluído</ng-template>
     Avaliação concluída. 
 
